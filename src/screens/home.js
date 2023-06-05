@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, View } from "react-native";
+import { FlatList, StyleSheet, TextInput, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import React from "react";
 import PlanetHeader from "../components/common/planet_header";
@@ -14,6 +14,11 @@ const Home = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <PlanetHeader />
+      <TextInput
+        placeholder="Type the planet name"
+        placeholderTextColor={colors.white}
+        style={styles.searchInput}
+      />
       <FlatList
         contentContainerStyle={styles.list}
         data={planet_list}
@@ -53,5 +58,12 @@ const styles = StyleSheet.create({
   separator: {
     borderBottomColor: colors.white,
     borderWidth: 0.5,
+  },
+  searchInput: {
+    padding: spacing[4],
+    color: colors.white,
+    borderBottomColor: colors.white,
+    borderBottomWidth: 1,
+    margin: spacing[4],
   },
 });
