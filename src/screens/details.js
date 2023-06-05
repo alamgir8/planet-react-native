@@ -1,4 +1,5 @@
 import {
+  Linking,
   Pressable,
   SafeAreaView,
   ScrollView,
@@ -24,8 +25,15 @@ import PlanetSection from "../components/common/planet_section";
 
 const Details = ({ navigation, route }) => {
   const planet = route.params.planet;
-  const { name, description, rotationTime, revolutionTime, radius, avgTemp } =
-    planet;
+  const {
+    name,
+    description,
+    rotationTime,
+    revolutionTime,
+    radius,
+    avgTemp,
+    wikiLink,
+  } = planet;
   const renderImage = (name) => {
     switch (name) {
       case "Earth":
@@ -46,6 +54,9 @@ const Details = ({ navigation, route }) => {
         return <Venus />;
     }
   };
+  const onPressLink = (link) => {
+    Linking.openURL(wikiLink);
+  };
   return (
     <SafeAreaView style={styles.container}>
       <PlanetHeader backBtn />
@@ -56,7 +67,7 @@ const Details = ({ navigation, route }) => {
             {name}{" "}
           </Text>
           <Text style={styles.description}>{description} </Text>
-          <Pressable style={styles.source}>
+          <Pressable onPress={onPressLink} style={styles.source}>
             <Text>Source :</Text>
             <Text preset="h4" style={styles.wikipedia}>
               Wikipedia
