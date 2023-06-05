@@ -1,11 +1,5 @@
-import {
-  Linking,
-  Pressable,
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  View,
-} from "react-native";
+import { Linking, Pressable, ScrollView, StyleSheet, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import React from "react";
 import { colors } from "../theme/color";
 import PlanetHeader from "../components/common/planet_header";
@@ -34,7 +28,7 @@ const Details = ({ navigation, route }) => {
     avgTemp,
     wikiLink,
   } = planet;
-  const renderImage = (name) => {
+  const renderImage = () => {
     switch (name) {
       case "Earth":
         return <Earth />;
@@ -61,7 +55,7 @@ const Details = ({ navigation, route }) => {
     <SafeAreaView style={styles.container}>
       <PlanetHeader backBtn />
       <ScrollView>
-        <View style={styles.imageView}>{renderImage(name)}</View>
+        <View style={styles.imageView}>{renderImage()}</View>
         <View style={styles.detailsView}>
           <Text preset="h1" style={styles.name}>
             {name}{" "}

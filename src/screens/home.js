@@ -1,16 +1,9 @@
-import {
-  FlatList,
-  Pressable,
-  SafeAreaView,
-  StyleSheet,
-  View,
-} from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import React from "react";
-import { AntDesign } from "@expo/vector-icons";
 import PlanetHeader from "../components/common/planet_header";
 import { colors } from "../theme/color";
 import { planet_list } from "../data/planet_list";
-import Text from "../components/text/text";
 import { spacing } from "../theme/spacing";
 import PlanetItem from "../components/common/planet_item";
 
