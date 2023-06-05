@@ -1,4 +1,10 @@
-import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
+import {
+  Pressable,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  View,
+} from "react-native";
 import React from "react";
 import { colors } from "../theme/color";
 import PlanetHeader from "../components/common/planet_header";
@@ -17,7 +23,7 @@ import {
 
 const Details = ({ navigation, route }) => {
   const planet = route.params.planet;
-  const { name } = planet;
+  const { name, description } = planet;
   const renderImage = (name) => {
     switch (name) {
       case "Earth":
@@ -42,7 +48,19 @@ const Details = ({ navigation, route }) => {
     <SafeAreaView style={styles.container}>
       <PlanetHeader backBtn />
       <ScrollView>
-        <View style={styles.planetImageView}>{renderImage(name)}</View>
+        <View style={styles.imageView}>{renderImage(name)}</View>
+        <View style={styles.detailsView}>
+          <Text preset="h1" style={styles.name}>
+            {name}{" "}
+          </Text>
+          <Text style={styles.description}>{description} </Text>
+          <Pressable style={styles.source}>
+            <Text>Source :</Text>
+            <Text preset="h4" style={styles.wikipedia}>
+              Wikipedia
+            </Text>
+          </Pressable>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -55,9 +73,32 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.black,
   },
-  planetImageView: {
-    padding: spacing[5],
+  imageView: {
+    marginTop: spacing[4],
     alignItems: "center",
     justifyContent: "center",
+  },
+  detailsView: {
+    marginTop: spacing[10],
+    marginHorizontal: spacing[6],
+    alignItems: "center",
+  },
+  name: {
+    textTransform: "uppercase",
+    textAlign: "center",
+  },
+  description: {
+    textAlign: "center",
+    marginTop: spacing[4],
+    lineHeight: 21,
+  },
+  source: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: spacing[4],
+  },
+  wikipedia: {
+    textDecorationLine: "underline",
+    marginLeft: spacing[2],
   },
 });
