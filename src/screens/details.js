@@ -20,10 +20,12 @@ import {
   Mercury,
   Neptune,
 } from "../svg";
+import PlanetSection from "../components/common/planet_section";
 
 const Details = ({ navigation, route }) => {
   const planet = route.params.planet;
-  const { name, description } = planet;
+  const { name, description, rotationTime, revolutionTime, radius, avgTemp } =
+    planet;
   const renderImage = (name) => {
     switch (name) {
       case "Earth":
@@ -61,6 +63,11 @@ const Details = ({ navigation, route }) => {
             </Text>
           </Pressable>
         </View>
+        <View style={{ height: 20 }} />
+        <PlanetSection title="ROTATION TIME" value={rotationTime} />
+        <PlanetSection title="REVOLUTION TIME" value={revolutionTime} />
+        <PlanetSection title="RADIUS TIME" value={radius} />
+        <PlanetSection title="AVERAGE TEMP" value={avgTemp} />
       </ScrollView>
     </SafeAreaView>
   );
