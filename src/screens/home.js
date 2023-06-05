@@ -12,8 +12,12 @@ import { colors } from "../theme/color";
 import { planet_list } from "../data/planet_list";
 import Text from "../components/text/text";
 import { spacing } from "../theme/spacing";
+import PlanetItem from "../components/common/planet_item";
 
 const Home = ({ navigation }) => {
+  const renderItem = ({ item }) => {
+    return <PlanetItem item={item} />;
+  };
   return (
     <SafeAreaView style={styles.container}>
       <PlanetHeader />
@@ -21,26 +25,7 @@ const Home = ({ navigation }) => {
         contentContainerStyle={styles.list}
         data={planet_list}
         keyExtractor={(item) => item.name}
-        renderItem={({ item }) => {
-          const { name, color } = item;
-          return (
-            <Pressable
-              onPress={() => {
-                navigation.navigate("Details", { planet: item });
-              }}
-              style={styles.item}
-            >
-              <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <View style={[styles.circle, { backgroundColor: color }]} />
-                <Text preset="h4" style={styles.itemName}>
-                  {name}
-                </Text>
-              </View>
-
-              <AntDesign name="right" size={18} color="white" />
-            </Pressable>
-          );
-        }}
+        renderItem={renderItem}
         ItemSeparatorComponent={() => <View style={styles.separator} />}
       />
     </SafeAreaView>
